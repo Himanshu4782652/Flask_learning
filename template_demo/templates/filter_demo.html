@@ -1,0 +1,32 @@
+The names Received are {{ context.names }} Their Age {{ context.numbers }}
+<br />
+The minimum age is {{ context.numbers|min }}
+<br />
+The maximum age is {{ context.numbers|max }}
+<br />
+
+<h1>Iterate in Reverse Order</h1>
+{% for a_name in context.names|reverse %}
+   {{ loop }}{{ a_name|upper }}
+   <br />
+{% endfor %}
+<br />
+
+{% for a_num in context.numbers %}
+   {% if a_num is divisibleby 3 %}
+      {{ a_num }} is divisible
+      {% else %}
+      {{ a_num }} is not divisble
+  {% endif %}
+{% endfor %}
+
+<br />
+The sorted age are: {{ context.numbers|sort }}
+<br />
+The sorted names are: {{ context.names|sort }} 
+<br>
+The first number is: {{ context.numbers|first|lower }}
+<br>
+The last name is: {{ context.names|last|upper }}
+<br>
+The sum of all ages are: {{ context.numbers|sum }} 

@@ -1,0 +1,7 @@
+nav a{
+   color: #d61d1d;
+   font-size: 3em;
+   margin-left: 40px;
+   background-color: rgb(92, 150, 201);
+   box-shadow: 0 5px 15px 0 rgba(0,0,0,2);
+}
