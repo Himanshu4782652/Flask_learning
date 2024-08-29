@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 
-@app.route('/makeJson')
+@app.route("/makeJson")
 def make_json():
     person = {
         "name": "Himanshu",
@@ -15,11 +15,11 @@ def make_json():
     return res.text
 
 
-@app.route('/processJson', methods=['post'])
+@app.route("/processJson", methods=["post"])
 def process_json():
     if request.is_json:
-      #   return "It has json data"
-      return request.json
+        #   return "It has json data"
+        return request.json
     else:
         return "It does'nt have json data"
 
