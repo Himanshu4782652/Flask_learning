@@ -17,7 +17,7 @@ def login():
         return res
     return """<form method="post" action="/login">
              <p><h3>Enter your username</h3></p>
-             <input name="username" />
+             <input name="username"/>
              <p><input type="submit" value="GO" /></p>
              </form>"""
 
