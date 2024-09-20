@@ -1,0 +1,15 @@
+<table border="2">
+  <thead>tatus Name</th>
+    <th>Status Code</th>
+    <th>Status Description</th>
+  </thead>
+  <tbody>
+    {% for a_status in status: %}
+    <tr>
+      <td>{{ a_status}}
+      <td>{{ a_status.value }}</td>
+      <td>{{ a_status.description }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
