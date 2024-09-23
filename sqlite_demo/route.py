@@ -19,6 +19,28 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/deleteInput")
+def delete_input():
+    return render_template("delete_input.html")
+
+
+@app.route("/deleteStudent", methods=["POST"])
+def delete_student():
+    stud_name = request.form.get("txtname")
+    try:
+        with sqlite3.connect("mycollege.db") as conn:
+            my_query = "delete from student where name='" + stud_name + "';"
+            conn.execute(my_query)
+            conn.commit()
+            msg = "total rows deleted are:" + str(conn.total_changes)
+    except:
+        conn.rollback()
+        msg = "Sorry...Could not delete any records"
+    finally:
+        conn.close()
+    return render_template("success.html", msg=msg)
+
+
 @app.route("/addStudent")
 def add_student():
     return render_template("add_student.html")
