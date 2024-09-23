@@ -27,17 +27,18 @@ def add_student():
 @app.route("/saveStudent", methods=["GET", "POST"])
 def save_student():
     msg = ""
-    if request.method == 'POST':
+    if request.method == "POST":
         try:
-            name = request.form.get('studname')
-            addr = request.form.get('studaddr')
-            city = request.form.get('studcity')
-            pin = request.form.get('studpin')
+            name = request.form.get("studname")
+            addr = request.form.get("studaddr")
+            city = request.form.get("studcity")
+            pin = request.form.get("studpin")
 
-            with sqlite3.connect('mycollege.db') as conn:
+            with sqlite3.connect("mycollege.db") as conn:
                 cur = conn.cursor()
                 cur.execute(
-                    "INSERT INTO student(name, addr, city, pin) values(?, ?, ?, ?)", (name, addr, city, pin)
+                    "INSERT INTO student(name, addr, city, pin) values(?, ?, ?, ?)",
+                    (name, addr, city, pin),
                 )
                 conn.commit()
                 msg = "data inserted successfully"
@@ -46,6 +47,18 @@ def save_student():
             conn.rollback()
             msg = "Could not Insert data into student"
     return render_template("success.html", msg=msg)
+
+
+@app.route("/listStudent")
+def list_student():
+    conn = sqlite3.connect("mycollege.db")
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    cur.execute("select * from student")
+    row = cur.fetchall()
+
+    return render_template("view.html", row=row)
 
 
 if __name__ == "__main__":

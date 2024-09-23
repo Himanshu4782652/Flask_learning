@@ -1,0 +1,17 @@
+<h1>Student List</h1>
+<table border="dashed">
+  <thead>
+    <th>Name</th>
+    <th>Address</th>
+    <td>City</td>
+    <td>Pin</td>
+  </thead>
+  {% for row in row %}
+  <tr>
+    <td>{{row['name']}}</td>
+    <td>{{row['addr']}}</td>
+    <td>{{row['city']}}</td>
+    <td>{{row['pin']}}</td>
+  </tr>
+  {% endfor %}
+</table>
