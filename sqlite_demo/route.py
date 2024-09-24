@@ -18,6 +18,25 @@ conn.close()
 def index():
     return render_template("index.html")
 
+@app.route("/updateInput")
+def update_input():
+    return render_template("update_input.html")
+
+@app.route("/updateStudent", methods=["POST"])
+def update_student():
+    stud_name=request.form.get('txtname')
+    stud_city=request.form.get('txtcity')
+    
+    try:
+        with sqlite3.connect("mycollege.db") as conn:
+            my_query = "update student set city='" + stud_city + "' where name='" + stud_name + "';"
+            conn.execute(my_query)
+            conn.commit()
+            msg = "Total rows affected are: " + str(conn.total_changes)
+    except:
+        conn.rollback()
+        msg = "Sorry... Could not update the record"
+    return render_template('success.html', msg=msg)
 
 @app.route("/deleteInput")
 def delete_input():
