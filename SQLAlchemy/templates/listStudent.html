@@ -1,0 +1,18 @@
+<table>
+ <thead>
+  <th>Name</th>
+  <th>Address</th>
+  <th>City</th>
+  <th>Pin</th>
+ </thead>
+ <tbody>
+  {% for a_data in data %}
+   <tr>
+    <td>{{ a_data['name'] }}</td>
+    <td>{{ a_data['address'] }}</td>
+    <td>{{ a_data['city'] }}</td>
+    <td>{{ a_data['pin'] }}</td>
+   </tr>
+  {% endfor %}
+ </tbody>
+</table>              
