@@ -29,8 +29,27 @@ def insert_student():
 
 @app.route("/queryStudent")
 def queryStudent():
- all_student = student.query.all()
- return render_template("/listStudent.html", data=all_student)
+    all_student = student.query.all()
+    return render_template("/listStudent.html", data=all_student)
+
+
+@app.route("/deleteStudent")
+def delete_student():
+    stud = student.query.filter_by(city="Sahjanwa").first()
+    db.session.delete(stud)    
+    db.session.commit()
+    msg = "Record Deleted"
+    return render_template("success.html", msg=msg)
+
+
+@app.route("/updateStudent")
+def update_student():
+    stud = student.query.filter_by(name="Himanshu Srivastav").first()
+    stud.city = "Mumbai"
+    db.session.commit()
+    msg = "Record Updated"
+    return render_template("success.html", msg=msg)
+
 
 @app.route("/submitStudent", methods=["POST"])
 def submit_student():
